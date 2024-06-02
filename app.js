@@ -25,11 +25,17 @@ io.on('connection', (socket) => {
         io.emit('message', msg);
     });
 
+    socket.on('solicitud', (msg) => {
+        console.log('solicitud: ' + msg);
+        // Enviar el mensaje a todos los clientes conectados
+        io.emit('solicitud', msg);
+    });
+
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
 });
 
 server.listen(3500, () => {
-    console.log('listening on *:3000');
+    console.log('listening on *:3500');
 });
